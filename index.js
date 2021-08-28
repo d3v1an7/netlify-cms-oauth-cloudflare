@@ -2,18 +2,6 @@ addEventListener('fetch', event =>
   event.respondWith(handleRequest(event.request)),
 )
 
-// Verbose handling here to avoid chicken/egg errors when setting up project
-if (typeof CLIENT_ID !== 'undefined') {
-  const client_id = CLIENT_ID
-} else {
-  const client_id = null
-}
-if (typeof CLIENT_SECRET !== 'undefined') {
-  const client_secret = CLIENT_SECRET
-} else {
-  const client_secret = null
-}
-
 function renderBody(status, content) {
   const html = `
     <script>
@@ -33,6 +21,8 @@ function renderBody(status, content) {
 }
 
 async function handleRequest(req) {
+  const client_id = CLIENT_ID
+  const client_secret = CLIENT_SECRET
   try {
     const url = new URL(req.url)
     if (url.pathname === '/auth') {

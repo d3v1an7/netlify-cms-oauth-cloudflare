@@ -1,6 +1,5 @@
 name = "netlify-cms-oauth"
 type = "javascript"
-account_id = "632ee1b6e8aa9cbc70b954866a4b7886"
 workers_dev = false
 routes = ["https://bemm.com.au/auth*", "https://bemm.com.au/callback*"]
 zone_id = "65ce268e36dda9fcb8147d8908f15168"

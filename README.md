@@ -20,29 +20,28 @@ Then authenticate `wrangler` to link the CLI with your CloudFlare account:
 wrangler login
 ```
 
-### Update `wrangler.toml`
+### 1. Update `wrangler.toml`
 
 I'm using my own domain instead of the worker dev URLs, so I needed to fill in `zone_id` and `routes`.
 The `zone_id` value can be found on the landing page for your domain in Cloudflare in the right panel, under the heading API.
 
 If you're wondering where the routes end up, check your domain again after publishing and click on **Workers** in the nav.
 
-If you'd prefer to just using the worker dev URL (something like `{your-project-name}.{your-worker-subdomain}.workers.dev`), switch `workers_dev` to `true`, and remove `account_id`, `zone_id` and `routes`.
+If you'd prefer to just use the worker dev URL (something like `{your-project-name}.{your-worker-subdomain}.workers.dev`), switch `workers_dev` to `true`, and remove `account_id`, `zone_id` and `routes`.
 
-
-### Create an Oauth app in GitHub
+### 2. Create an Oauth app in GitHub
 
 Log into GitHub, and set up a new Oauth app: https://github.com/settings/developers
 
-**Application name**: When the user logs in, the GitHub popup will display "Sign in to GitHub to continue to {Application name}" and once they have logged in, the next window wll show "Authorize {Application Name}". So to avoid confusion, the name should ideally include something about the Netlify CMS.
-
-**Homepage URL**: Although this is required, it does not seem to be used. You can use the same URL as `Authorization callback URL`.
-
-**Authorization callback URL**: This is the important one. If you're setting this up against your domain, the it's just the domain name. (i.e. `https://bemm.com.au`).
-
+- **Application name**  
+When the user logs in, the GitHub popup will display "Sign in to GitHub to continue to {Application name}" and once they have logged in, the next window wll show "Authorize {Application Name}". So to avoid confusion, the name should ideally include something about the Netlify CMS.
+- **Homepage URL**  
+Although this is required, it does not seem to be used. You can use the same URL as `Authorization callback URL`.
+- **Authorization callback URL**  
+This is the important one. If you're setting this up against your domain, the it's just the domain name. (i.e. `https://bemm.com.au`).  
 If you're planning on using the dev worker URL, you won't have that yet. That's okay! Just add `http://localhost` or something temp for now. At this point, we really just need the `CLIENT_ID` and `CLIENT_SECRET`. You should come back and update this URL after the `wrangler publish` step that will generate a worker URL for you.
 
-### Add the GitHub secrets to the worker
+### 3. Add the GitHub secrets to the worker
 
 Grab your Client ID, and generate a new client secret.
 
@@ -53,13 +52,13 @@ wrangler secret put CLIENT_ID
 wrangler secret put CLIENT_SECRET
 ```
 
-### Publish the worker
+### 4. Publish the worker
 
 ```
 wrangler publish
 ```
 
-### Update your Netlify CMS config
+### 5. Update your Netlify CMS config
 
 Your config should look something like this:
 
@@ -73,7 +72,7 @@ backend:
 
 Replace `base_url` with your own domain (where the routes are set up), or the worker dev URL.
 
-### Confirm you can log in
+### 6. Confirm you can log in
 
 Visit the `/admin/` of your Netlify CMS, and you should see a **Login with GitHub** button.
 

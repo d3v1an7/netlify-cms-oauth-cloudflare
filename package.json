@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "netlify-cms-oauth",
+  "version": "0.0.1",
+  "description": "GitHub Oauth for Netlify CMS via Cloudflare worker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write '**/*.{js,css,json,md}'"
+  },
+  "author": "Ben White <hello@bemm.com.au>",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
+}
